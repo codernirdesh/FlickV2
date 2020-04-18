@@ -5,7 +5,6 @@ import 'package:flick/pages/tv.dart';
 import 'package:flick/pages/watchlist.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
 
@@ -24,11 +23,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> _buildScreens() {
     return [
-      MoviesPage(),      
+      MoviesPage(),
       TvPage(),
       SearchPage(),
       WatchList(),
-      ];
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -63,19 +62,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
+    return Scaffold(      
+    bottomNavigationBar: PersistentTabView(          
       controller: _controller,
       items: _navBarsItems(),
       screens: _buildScreens(),
       showElevation: false,
       navBarCurve: NavBarCurve.upperCorners,
       backgroundColor: Colors.black,
-      iconSize: 26.0,
+      iconSize: 30.0,
       navBarStyle:
           NavBarStyle.style5, // Choose the nav bar style with this property
-      onItemSelected: (index) {
-        
-      },
-    );
+      onItemSelected: (index) {},
+    ));
   }
 }

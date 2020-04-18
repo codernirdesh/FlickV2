@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       color: Colors.black,
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      // home: Home(),
+      // home: MyHomePage(),
       initialRoute: '/',
       routes: {
         '/': (context) => MyHomePage(),
@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
         'detailed_movie': (context) => MovieDetail(),
         'movies': (context) => MoviesPage()
       },      
-      
     );
   }
 }

@@ -21,7 +21,7 @@ class IterableZip<T> extends IterableBase<List<T>> {
   /// Returns an iterator that combines values of the iterables' iterators
   /// as long as they all have values.
   Iterator<List<T>> get iterator {
-    var iterators = _iterables.map((x) => x.iterator).toList(growable: false);    
+    var iterators = _iterables.map((x) => x.iterator).toList(growable: false);
     return new _IteratorZip<T>(iterators);
   }
 }

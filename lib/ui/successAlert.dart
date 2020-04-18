@@ -1,6 +1,6 @@
 library flutter_awesome_alert_box;
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 
 class SuccessBgAlertBox {
   final BuildContext context;
@@ -62,8 +62,7 @@ class SuccessBgAlertBox {
                       borderRadius: BorderRadius.all(Radius.circular(9.0))),
                   color: buttonColor ?? Colors.white,
                   onPressed: () {
-                    Navigator.of(context).pop();
-                    
+                    Navigator.of(context).pop();                    
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -83,10 +82,6 @@ class SuccessBgAlertBox {
   }
 }
 
-
-
-
-
 class DarkBgAlertBox {
   final BuildContext context;
   final String title;
@@ -97,13 +92,13 @@ class DarkBgAlertBox {
   final Color buttonColor;
   final Color buttonTextColor;
   final String buttonText;
-  
+
   DarkBgAlertBox(
       {this.context,
       this.title,
       this.infoMessage,
-      this.titleTextColor,    
-      this.messageTextColor,      
+      this.titleTextColor,
+      this.messageTextColor,
       this.buttonColor,
       this.buttonText,
       this.buttonTextColor,
@@ -150,29 +145,24 @@ class DarkBgAlertBox {
                       borderRadius: BorderRadius.all(Radius.circular(9.0))),
                   color: buttonColor ?? Color(0xFF4E4E4E),
                   onPressed: () {
-                    Navigator.of(context).pop();                                        
+                    Navigator.of(context).pop();
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         buttonText ?? "CLOSE",
-                        style:
-                            TextStyle(color: buttonTextColor ?? Colors.red),
+                        style: TextStyle(color: buttonTextColor ?? Colors.red),
                       ),
                     ],
                   ),
                 ),
-                
               ],
             ),
           );
         });
   }
 }
-
-
-
 
 class WarningBgAlertBox {
   final BuildContext context;
@@ -238,22 +228,25 @@ class WarningBgAlertBox {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     InkWell(
-                      onTap: ontap,
-                      child: Container(
-                        height: 35,
-                        width: 90,
-                      decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      ),
-                      
-                        child: Center(child: Text('OK', style: TextStyle(color: Colors.black),)))
-                    ),
-                    FlatButton(                      
+                        onTap: ontap,
+                        child: Container(
+                            height: 35,
+                            width: 90,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0)),
+                            ),
+                            child: Center(
+                                child: Text(
+                              'OK',
+                              style: TextStyle(color: Colors.black),
+                            )))),
+                    FlatButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8.0))),
                       color: buttonColor ?? Colors.white,
-                      onPressed: () {                    
+                      onPressed: () {
                         Navigator.of(context).pop();
                       },
                       child: Row(
@@ -261,10 +254,9 @@ class WarningBgAlertBox {
                         children: <Widget>[
                           Text(
                             buttonText ?? "CLOSE",
-                            style:
-                                TextStyle(color: buttonTextColor ?? Colors.black),
+                            style: TextStyle(
+                                color: buttonTextColor ?? Colors.black),
                           ),
-                          
                         ],
                       ),
                     ),
@@ -274,5 +266,5 @@ class WarningBgAlertBox {
             ),
           );
         });
-  }  
+  }
 }
