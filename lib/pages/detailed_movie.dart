@@ -27,17 +27,19 @@ class _MovieDetailState extends State<MovieDetail> {
   List<String> watchlist, cover = [];
   String website = 'N/A';
   String videourl = 'g8K21P8CoeI';
+  dynamic userrating = 0.0;
 
   void setWatchListData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('moviesId', watchlist);
-    prefs.setStringList('moviecover', cover);
+    prefs.setStringList('moviecover', cover);    
   }
 
   void getWatchListData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> name = prefs.getStringList('moviesId');
     List<String> cvr = prefs.getStringList('moviecover');
+    
     if (name == null || cvr == null) {
       watchlist = [];
       cover = [];
@@ -95,9 +97,7 @@ class _MovieDetailState extends State<MovieDetail> {
           infoMessage: '',
           buttonText: 'Ok',
           buttonTextColor: Colors.black,
-          buttonColor: Colors.white
-          
-          );
+          buttonColor: Colors.white);
     } else {
       watchlist.remove(movieid);
       cover.remove(img);
@@ -158,8 +158,9 @@ class _MovieDetailState extends State<MovieDetail> {
                                   colorFilter: new ColorFilter.mode(
                                       Colors.black.withOpacity(0.4),
                                       BlendMode.dstATop),
-                                  image: NetworkImage(
-                                      'https://image.tmdb.org/t/p/w300/$img') // Cover img
+                                  image: NetworkImage(img == null
+                                      ? 'https://i.ibb.co/CvCHJ7N/error.png'
+                                      : 'https://image.tmdb.org/t/p/w300/$img') // Cover img
                                   ),
                               color: Colors.black,
                               borderRadius: BorderRadius.only(
@@ -171,8 +172,9 @@ class _MovieDetailState extends State<MovieDetail> {
                               Row(
                                 children: <Widget>[
                                   CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                        'https://image.tmdb.org/t/p/w200/$img'),
+                                    backgroundImage: NetworkImage(img == null
+                                        ? 'https://i.ibb.co/CvCHJ7N/error.png'
+                                        : 'https://image.tmdb.org/t/p/w200/$img'),
                                     radius: 60,
                                   ),
                                   SizedBox(width: 15),
@@ -273,8 +275,8 @@ class _MovieDetailState extends State<MovieDetail> {
                                 children: <Widget>[
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[                                      
-                                      InkWell(                                        
+                                    children: <Widget>[
+                                      InkWell(
                                         child: AvatarGlow(
                                           glowColor: Colors.white,
                                           endRadius: 60.0, //required
@@ -301,8 +303,8 @@ class _MovieDetailState extends State<MovieDetail> {
                                         ),
                                         onTap: () {
                                           setState(() {
-                                          updateWatchlist();                                            
-                                          });                                          
+                                            updateWatchlist();
+                                          });
                                         },
                                       )
                                     ],
@@ -370,7 +372,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                 ),
                                 onRatingUpdate: (rating) {
                                   setState(() {
-                                    rated = rating * 2.0;
+                                    rated = rating * 2.0;                                    
                                   });
                                 },
                               ),
@@ -430,11 +432,7 @@ class _MovieDetailState extends State<MovieDetail> {
                             ],
                           ),
                         ],
-                      ),
-                      SizedBox(height: 20),
-                      Divider(
-                        color: Colors.white,
-                      ),
+                      ),                      
                       SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,

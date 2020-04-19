@@ -44,9 +44,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    _onRefresh();
-    searched = '->90439043093209';
-    search(searched);
+    // _onRefresh();
   }
 
   @override
@@ -110,25 +108,28 @@ class _SearchPageState extends State<SearchPage> {
                   });
                 },
                 decoration: InputDecoration(
-                    border: InputBorder.none,
-                    filled: true,
-                    fillColor: Colors.black.withOpacity(0.1),
-                    alignLabelWithHint: false,
-                    labelText: 'Search Movies & Series',
-                    prefixIcon: Icon(Icons.search)),
+                  border: InputBorder.none,
+                  filled: true,
+                  fillColor: Colors.black.withOpacity(0.1),
+                  alignLabelWithHint: false,
+                  labelText: 'Search Movies & Series',
+                  prefixIcon: Icon(Icons.search),
+                ),
               ),
             ),
-          ]),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(right: 25),
+            Container(
+              margin: EdgeInsets.only(
+                  top: 100, left: MediaQuery.of(context).size.width / 1.3),
+              child: Theme(
+                data: Theme.of(context).copyWith(canvasColor: Colors.black),
                 child: DropdownButton<String>(
+                  iconDisabledColor: Colors.grey,
                   iconEnabledColor: Colors.white,
                   elevation: 0,
                   focusColor: Colors.black,
-                  hint: Text(typex.toUpperCase()),
+                  hint: Text(typex.toUpperCase(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white)),
                   items: <String>['movie', 'tv'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -144,8 +145,8 @@ class _SearchPageState extends State<SearchPage> {
                   },
                 ),
               ),
-            ],
-          ),
+            ),
+          ]),
           title == null
               ? Suggestion()
               : Search(
@@ -199,13 +200,6 @@ class Search extends StatelessWidget {
         int movieidx = x[4];
         String movietitlex = x[5];
 
-        if (img == 'null') {
-          img =
-              'https://images.wallpaperscraft.com/image/popcorn_dish_corn_111130_1280x720.jpg';
-        } else {
-          img = 'https://image.tmdb.org/t/p/w200/$img';
-        }
-
         return Column(
           children: <Widget>[
             Stack(
@@ -229,7 +223,9 @@ class Search extends StatelessWidget {
                         image: DecorationImage(
                             fit: BoxFit.fitWidth,
                             repeat: ImageRepeat.repeat,
-                            image: NetworkImage('$img'))),
+                            image: NetworkImage(img == null
+                                ? 'https://i.ibb.co/CvCHJ7N/error.png'
+                                : 'https://image.tmdb.org/t/p/w200/$img'))),
                   ),
                 ),
                 InkWell(
@@ -324,7 +320,7 @@ class Suggestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(top: 40),
+        padding: EdgeInsets.only(top: 70),
         child: Column(children: <Widget>[
           SuggestionText(
               title: 'The Shawshank Redemption', id: 278, type: 'movie'),

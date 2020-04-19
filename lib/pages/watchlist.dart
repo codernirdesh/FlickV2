@@ -13,30 +13,17 @@ class WatchList extends StatefulWidget {
   _WatchListState createState() => _WatchListState();
 }
 
-List<String> _list, _img = [];
-List<String> title = [];
-List<String> moviescover, moviesid = [];
+List<dynamic> _list, _img = [];
+List<dynamic> title = [];
+List<dynamic> moviescover, moviesid = [];
 
 class _WatchListState extends State<WatchList> {
   Future<void> getList() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> list = prefs.getStringList('seriesid');
-    List<String> img = prefs.getStringList('seriescoverimg');
-    List<String> movieid = prefs.getStringList('moviesId');
-    List<String> moviecover = prefs.getStringList('moviecover');
-
-    // For movies
-    if (movieid == null && moviecover == null) {
-      setState(() {
-        moviescover = [];
-        moviesid = [];
-      });
-    } else {
-      setState(() {
-        moviescover = moviecover;
-        moviesid = movieid;
-      });
-    }
+    List<dynamic> list = prefs.getStringList('seriesid');
+    List<dynamic> img = prefs.getStringList('seriescoverimg');
+    List<dynamic> movieid = prefs.getStringList('moviesId');
+    List<dynamic> moviecover = prefs.getStringList('moviecover');
 
     // For series
     if (list == null && img == null) {
@@ -48,6 +35,18 @@ class _WatchListState extends State<WatchList> {
       setState(() {
         _list = list;
         _img = img;
+      });
+    }
+// For movies
+    if (movieid == null && moviecover == null) {
+      setState(() {
+        moviescover = [];
+        moviesid = [];
+      });
+    } else {
+      setState(() {
+        moviescover = moviecover;
+        moviesid = movieid;
       });
     }
   }
@@ -139,9 +138,11 @@ class _WatchListState extends State<WatchList> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('SERIES WATCHLIST',
+                      Text('TV\nWATCHLIST',
                           style: TextStyle(
-                              fontSize: 50, fontWeight: FontWeight.bold)),
+                              fontFamily: 'RussoOne',
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold)),
                       //  Text(' Swipe LEFT to see Movies Watch List >')
                     ],
                   ),
@@ -180,16 +181,17 @@ class _WatchListState extends State<WatchList> {
                   : Container(
                       child: Column(
                           children: IterableZip([_list, _img]).map((f) {
-                      var list = f[0];
-                      var img = f[1];
+                      dynamic list = f[0];
+                      dynamic img = f[1];
                       return Stack(children: <Widget>[
                         Container(
                           width: MediaQuery.of(context).size.width / 1,
                           height: MediaQuery.of(context).size.height / 3,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://image.tmdb.org/t/p/w500$img'),
+                                  image: NetworkImage(img == null
+                                      ? 'https://i.ibb.co/CvCHJ7N/error.png'
+                                      : 'https://image.tmdb.org/t/p/w500$img'),
                                   fit: BoxFit.fitWidth)),
                         ),
                         Container(
@@ -305,9 +307,11 @@ class _WatchListState extends State<WatchList> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('MOVIES WATCHLIST',
+                    Text('MOVIE WATCHLIST',
                         style: TextStyle(
-                            fontSize: 50, fontWeight: FontWeight.bold)),
+                            fontFamily: 'RussoOne',
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold)),
                     //  Text('< Swipe RIGHT to see Series Watch List', style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),)
                   ],
                 ),
@@ -344,16 +348,17 @@ class _WatchListState extends State<WatchList> {
             Container(
                 child: Column(
                     children: IterableZip([moviesid, moviescover]).map((f) {
-              var list = f[0];
-              var img = f[1];
+              dynamic list = f[0];
+              dynamic img = f[1];
               return Stack(children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width / 1,
                   height: MediaQuery.of(context).size.height / 3,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(
-                              'https://image.tmdb.org/t/p/w500$img'),
+                          image: NetworkImage(img == null
+                              ? 'https://i.ibb.co/CvCHJ7N/error.png'
+                              : 'https://image.tmdb.org/t/p/w500$img'),
                           fit: BoxFit.fitWidth)),
                 ),
                 Container(

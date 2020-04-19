@@ -10,7 +10,6 @@ class TvPage extends StatefulWidget {
 }
 
 class _TvPageState extends State<TvPage> {
-  List<String> movietitles, movietitles2, movietitles3 = [];
   List<String> posters, posters2, posters3 = [];
   List<int> movieId, movieId2, movieId3 = [];
 
@@ -36,15 +35,12 @@ class _TvPageState extends State<TvPage> {
     setState(() {
       responsecode = popular.responsecode;
 
-      movietitles = popular.titles;
       posters = popular.posterPath;
       movieId = popular.id;
 
-      movietitles2 = toprated.titles;
       posters2 = toprated.posterPath;
       movieId2 = toprated.id;
 
-      movietitles3 = randompicked.titles;
       posters3 = randompicked.posterPath;
       movieId3 = randompicked.id;
     });
@@ -108,9 +104,10 @@ class _TvPageState extends State<TvPage> {
               Container(
                   margin: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height / 3.9, left: 20),
-                  child: Text('SERIES',
+                  child: Text('TV',
                       style: TextStyle(
-                          fontSize: 80,
+                          fontSize: 75,
+                          fontFamily: 'RussoOne',
                           color: Colors.white,
                           fontWeight: FontWeight.bold))),
             ]),
@@ -118,17 +115,23 @@ class _TvPageState extends State<TvPage> {
                 movieid: movieId,
                 listitem: posters,
                 initialString: 'Currently Popular TV Shows',
-                responsecode: responsecode),
+                responsecode: responsecode,
+                seewhat: 'popular',
+                type: 'tv'),
             TvCard(
                 movieid: movieId2,
                 listitem: posters2,
-                initialString: 'Top IMDb Rated TV Shows',
-                responsecode: responsecode),
+                initialString: 'Top Rated TV Shows',
+                responsecode: responsecode,
+                seewhat: 'top_rated',
+                type: 'tv'),
             TvCard(
                 movieid: movieId3,
                 listitem: posters3,
                 initialString: 'TV Shows For You',
-                responsecode: responsecode),
+                responsecode: responsecode,
+                seewhat: 'top_rated',
+                type: 'tv'),
           ],
         ),
       )),

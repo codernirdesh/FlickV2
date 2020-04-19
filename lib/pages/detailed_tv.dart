@@ -17,7 +17,7 @@ class TvDetail extends StatefulWidget {
 }
 
 class _TvDetailState extends State<TvDetail> {
-  YoutubePlayerController _controller;
+  // YoutubePlayerController _controller;
 
   String movieid, createdby, genre, year, rating, plot, coverimg, tagline = '';
   String img, language, status, origincountry, lastEpisode, title = '';
@@ -60,7 +60,11 @@ class _TvDetailState extends State<TvDetail> {
       coverimg = instance.coverimg;
       plot = instance.plot;
       runtime = instance.runtime;
-      videourl = instance.videourl;
+      if (instance.videourl == null) {
+        videourl = 'null';
+      } else {
+        videourl = instance.videourl;
+      }
 
       votes = instance.voteAverage;
       if (votes == null) {
@@ -125,8 +129,9 @@ class _TvDetailState extends State<TvDetail> {
                                   colorFilter: new ColorFilter.mode(
                                       Colors.black.withOpacity(0.4),
                                       BlendMode.dstATop),
-                                  image: NetworkImage(
-                                      'https://image.tmdb.org/t/p/w300/$img') // Cover img
+                                  image: NetworkImage(img == null
+                                      ? 'https://i.ibb.co/CvCHJ7N/error.png'
+                                      : 'https://image.tmdb.org/t/p/w300/$img') // Cover img
                                   ),
                               color: Colors.black,
                               borderRadius: BorderRadius.only(
@@ -137,8 +142,9 @@ class _TvDetailState extends State<TvDetail> {
                               Row(
                                 children: <Widget>[
                                   CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          'https://image.tmdb.org/t/p/w200/$img'),
+                                      backgroundImage: NetworkImage(img == null
+                                          ? 'https://i.ibb.co/CvCHJ7N/error.png'
+                                          : 'https://image.tmdb.org/t/p/w200/$img'),
                                       radius: 60,
                                       backgroundColor: Colors.transparent),
                                   SizedBox(width: 15),

@@ -17,7 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    super.initState();
+    super.initState();    
     _controller = PersistentTabController(initialIndex: 0);
   }
 
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(      
+    return Scaffold(            
     bottomNavigationBar: PersistentTabView(          
       controller: _controller,
       items: _navBarsItems(),

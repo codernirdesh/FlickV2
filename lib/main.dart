@@ -16,7 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       color: Colors.black,
-      theme: ThemeData.dark(),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        canvasColor: Colors.transparent
+      ),
       debugShowCheckedModeBanner: false,
       // home: MyHomePage(),
       initialRoute: '/',

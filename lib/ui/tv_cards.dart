@@ -1,24 +1,30 @@
+import 'package:flick/pages/see_more.dart';
+import 'package:flick/ui/shimmerCards.dart';
 import 'package:flutter/material.dart';
 import 'package:flick/extra/iterablezip.dart';
 import 'package:flick/pages/detailed_tv.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class TvCard extends StatelessWidget {
-  TvCard(
-      {@required this.listitem,
-      @required this.movieid,
-      @required this.initialString,
-      @optionalTypeArgs this.responsecode});
+  TvCard({
+    @required this.listitem,
+    @required this.movieid,
+    @required this.initialString,
+    @optionalTypeArgs this.responsecode,
+    @required this.seewhat,
+    @required this.type,
+  });
 
   final List<String> listitem;
   final List<int> movieid;
   final String initialString;
   final int responsecode;
+  final String seewhat;
+  final String type;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return Container(
         height: 250,
         padding: EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 10),
@@ -33,7 +39,19 @@ class TvCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 16)),
                 FlatButton(
-                  onPressed: () {},
+                  onPressed: () {                    
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) => BottomSheet(
+                          builder: (BuildContext context) {
+                            return BottomSheetx(
+                              seewhat: seewhat,
+                              type: type,                              
+                            );
+                          },
+                          onClosing: () {}),
+                    );
+                  },
                   child: Text(
                     'See more',
                     style: TextStyle(color: Colors.white),
@@ -76,16 +94,18 @@ class TvCard extends StatelessWidget {
                                     onTap: () {
                                       pushNewScreen(
                                         context,
-                                        screen: TvDetail(movieId: moviesid),                                        
+                                        screen: TvDetail(movieId: moviesid),
                                         withNavBar: false,
-                                    );
+                                      );
                                     },
                                     child: ClipRRect(
                                       child: CachedNetworkImage(
+                                        useOldImageOnUrlChange: true,
                                         width: 145,
                                         height: 150,
-                                        imageUrl:
-                                            'https://image.tmdb.org/t/p/w200/$poster',
+                                        imageUrl: poster == null
+                                            ? 'https://i.ibb.co/CvCHJ7N/error.png'
+                                            : 'https://image.tmdb.org/t/p/w200/$poster',
                                       ),
                                     ),
                                   ),
@@ -99,31 +119,5 @@ class TvCard extends StatelessWidget {
           ),
         ]),
         decoration: BoxDecoration(color: Colors.black));
-  }
-}
-
-class ShimmerCard extends StatelessWidget {
-  const ShimmerCard({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      child: Container(
-        width: 110,
-        height: 150,
-        child: Shimmer(
-            child: ClipRect(
-              child: Container(
-                width: 110,
-                height: 150,
-                color: Colors.white.withOpacity(0.3),
-              ),
-            ),
-            gradient: LinearGradient(colors: [Colors.white, Colors.white10])),
-        color: Colors.white.withOpacity(0.2),
-      ),
-    );
   }
 }

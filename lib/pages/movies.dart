@@ -3,6 +3,7 @@ import 'package:flick/ui/movie_cards.dart';
 import 'package:flick/services/APIhome.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'dart:math';
+import 'package:connection_status_bar/connection_status_bar.dart';
 
 class MoviesPage extends StatefulWidget {
   @override
@@ -10,20 +11,10 @@ class MoviesPage extends StatefulWidget {
 }
 
 class _MoviesPageState extends State<MoviesPage> {
-  List<String> movietitles,
-      movietitles2,
-      movietitles3,
-      movietitles4,
-      movietitles5 = [];
   List<String> posters, posters2, posters3, posters4, posters5 = [];
   List<int> movieId, movieId2, movieId3, movieId4, movieId5 = [];
 
   int responsecode;
-
-  List<String> images = [
-    'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg',
-    'https://adastra.ca/wp-content/uploads/2016/01/horizontal-portada.jpg',
-  ];
 
   void getMovies() async {
     String key = 'a71008231061acb3b96b658e8afb1ca3';
@@ -37,38 +28,27 @@ class _MoviesPageState extends State<MoviesPage> {
         url: 'https://api.themoviedb.org/3/movie/top_rated?api_key=$key');
     Getmovie nowplaying = Getmovie(
         url: 'https://api.themoviedb.org/3/movie/now_playing?api_key=$key');
-    Getmovie trending = Getmovie(
-        url:
-            'https://api.themoviedb.org/3/trending/all/day?api_key=$key&page=2');
     Getmovie moviesforyou = Getmovie(
         url:
-            'https://api.themoviedb.org/3/trending/all/day?api_key=$key&page=$page');
+            'https://api.themoviedb.org/3/movie/top_rated?api_key=$key&page=$page');
 
     await popular.topRatedMoives();
     await toprated.topRatedMoives();
     await nowplaying.topRatedMoives();
-    await trending.topRatedMoives();
     await moviesforyou.topRatedMoives();
 
     setState(() {
       responsecode = popular.responsecode;
 
-      movietitles = popular.titles;
       posters = popular.posterPath;
       movieId = popular.id;
-      movietitles2 = toprated.titles;
+
       posters2 = toprated.posterPath;
       movieId2 = toprated.id;
 
-      movietitles3 = nowplaying.titles;
       posters3 = nowplaying.posterPath;
       movieId3 = nowplaying.id;
 
-      movietitles4 = trending.titles;
-      posters4 = trending.posterPath;
-      movieId4 = trending.id;
-
-      movietitles5 = moviesforyou.titles;
       posters5 = moviesforyou.posterPath;
       movieId5 = moviesforyou.id;
     });
@@ -132,36 +112,59 @@ class _MoviesPageState extends State<MoviesPage> {
               Container(
                   margin: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height / 3.9, left: 20),
-                  child: Text('MOVIES',
+                  child: Text('MOVIE',
                       style: TextStyle(
-                          fontSize: 80,
+                          fontSize: 75,
                           color: Colors.white,
-                          fontWeight: FontWeight.bold))),
+                          fontFamily: 'RussoOne',
+                          fontWeight: FontWeight.bold))),                          
+              ConnectionStatusBar(
+                height: 25, 
+                width: double.maxFinite,
+                color: Colors.redAccent,
+                lookUpAddress:
+                    'google.com',
+                endOffset: const Offset(
+                    0.0, 0.0),
+                beginOffset: const Offset(
+                    0.0, -1.0),
+                animationDuration: const Duration(
+                    milliseconds: 200),
+                title: Text(
+                    'Please check your internet connection :(',
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+              ),
             ]),
             MovieCard(
-                movieid: movieId3,
-                listitem: posters3,
-                initialString: 'Now Playing',
-                responsecode: responsecode),
+              movieid: movieId3,
+              listitem: posters3,
+              initialString: 'Now Playing',
+              responsecode: responsecode,
+              seewhat: 'now_playing',
+              type: 'movie',
+            ),
             MovieCard(
                 movieid: movieId,
                 listitem: posters,
                 initialString: 'Currently Popular Movies',
-                responsecode: responsecode),
+                responsecode: responsecode,
+                seewhat: 'popular',
+                type: 'movie'),
             MovieCard(
-                movieid: movieId2,
-                listitem: posters2,
-                initialString: 'Top IMDb Rated Movies',
-                responsecode: responsecode),
-            MovieCard(
-                movieid: movieId4,
-                listitem: posters4,
-                initialString: 'Trending',
-                responsecode: responsecode),
+              movieid: movieId2,
+              listitem: posters2,
+              initialString: 'Top Rated Movies',
+              responsecode: responsecode,
+              seewhat: 'top_rated',
+              type: 'movie',
+            ),
             MovieCard(
                 movieid: movieId5,
                 listitem: posters5,
                 initialString: 'Movies For You',
+                seewhat: 'top_rated',
+                type: 'movie',
                 responsecode: responsecode),
           ],
         ),
