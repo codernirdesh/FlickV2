@@ -1,0 +1,40 @@
+a71008231061acb3b96b658e8afb1ca3
+
+1.  To get the config data like image base urls
+		        https://api.themoviedb.org/3/configuration?api_key=a71008231061acb3b96b658e8afb1ca3
+
+
+3.  To fetch more details about a movie
+     		   https://api.themoviedb.org/3/movie/<419704>?api_key=a71008231061acb3b96b658e8afb1ca3
+
+
+2. To fetch a list of movies based on a keyword
+		        https://api.themoviedb.org/3/search/movie?api_key=a71008231061acb3b96b658e8afb1ca3&query=<keyword>
+
+4. Popular movies 
+        		       https://api.themoviedb.org/3/movie/popular?api_key=a71008231061acb3b96b658e8afb1ca3
+
+5. Top rated
+			https://api.themoviedb.org/3/movie/top_rated?api_key=a71008231061acb3b96b658e8afb1ca3
+
+
+6. Images
+			https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
+
+
+
+https://www.youtube.com/watch?v=_pgmFAOgm5E
+
+flutter_awesome_alert_box: ^1.0.1  
+http: ^0.12.0+4  
+  line_icons: ^0.2.0
+  pull_to_refresh: ^1.5.7
+  shared_preferences: ^0.5.6+3
+  flutter_spinkit: ^4.1.2+1  
+  flutter_swiper: ^1.1.6  
+  url_launcher: ^5.4.2
+  persistent_bottom_nav_bar: ^1.2.1
+  content_placeholder: ^0.1.0
+  shimmer: ^1.1.1
+  animated_text_kit: ^2.0.0  
+  youtube_player_flutter: ^6.1.0+7
