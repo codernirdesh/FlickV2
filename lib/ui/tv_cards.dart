@@ -1,8 +1,8 @@
-import 'package:flick/pages/see_more.dart';
-import 'package:flick/ui/shimmerCards.dart';
+import 'package:Flick/pages/see_more.dart';
+import 'package:Flick/ui/shimmerCards.dart';
 import 'package:flutter/material.dart';
-import 'package:flick/extra/iterablezip.dart';
-import 'package:flick/pages/detailed_tv.dart';
+import 'package:Flick/extra/iterablezip.dart';
+import 'package:Flick/pages/detailed_tv.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -24,7 +24,7 @@ class TvCard extends StatelessWidget {
   final String type;
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Container(
         height: 250,
         padding: EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 10),
@@ -39,14 +39,14 @@ class TvCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 16)),
                 FlatButton(
-                  onPressed: () {                    
+                  onPressed: () {
                     showModalBottomSheet(
                       context: context,
                       builder: (BuildContext context) => BottomSheet(
                           builder: (BuildContext context) {
                             return BottomSheetx(
                               seewhat: seewhat,
-                              type: type,                              
+                              type: type,
                             );
                           },
                           onClosing: () {}),

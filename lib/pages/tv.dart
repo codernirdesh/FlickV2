@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flick/ui/tv_cards.dart';
-import 'package:flick/services/APIhome.dart';
+import 'package:Flick/ui/tv_cards.dart';
+import 'package:Flick/services/APIhome.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'dart:math';
 

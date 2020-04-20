@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flick/ui/movie_cards.dart';
-import 'package:flick/services/APIhome.dart';
+import 'package:Flick/ui/movie_cards.dart';
+import 'package:Flick/services/APIhome.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'dart:math';
 import 'package:connection_status_bar/connection_status_bar.dart';
@@ -66,7 +66,7 @@ class _MoviesPageState extends State<MoviesPage> {
   @override
   void initState() {
     super.initState();
-    getMovies();
+    // getMovies();
   }
 
   @override
@@ -117,23 +117,19 @@ class _MoviesPageState extends State<MoviesPage> {
                           fontSize: 75,
                           color: Colors.white,
                           fontFamily: 'RussoOne',
-                          fontWeight: FontWeight.bold))),                          
+                          fontWeight: FontWeight.bold))),
               ConnectionStatusBar(
-                height: 25, 
+                height: 25,
                 width: double.maxFinite,
                 color: Colors.redAccent,
-                lookUpAddress:
-                    'google.com',
-                endOffset: const Offset(
-                    0.0, 0.0),
-                beginOffset: const Offset(
-                    0.0, -1.0),
-                animationDuration: const Duration(
-                    milliseconds: 200),
+                lookUpAddress: 'google.com',
+                endOffset: const Offset(0.0, 0.0),
+                beginOffset: const Offset(0.0, -1.0),
+                animationDuration: const Duration(milliseconds: 200),
                 title: Text(
-                    'Please check your internet connection :(',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  ),
+                  'Please check your internet connection :(',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
               ),
             ]),
             MovieCard(

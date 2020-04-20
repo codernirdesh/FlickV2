@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flick/pages/movies.dart';
-import 'package:flick/pages/search.dart';
-import 'package:flick/pages/tv.dart';
-import 'package:flick/pages/watchlist.dart';
+import 'package:Flick/pages/movies.dart';
+import 'package:Flick/pages/search.dart';
+import 'package:Flick/pages/tv.dart';
+import 'package:Flick/pages/watchlist.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,10 +15,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   PersistentTabController _controller;
 
-
   @override
   void initState() {
-    super.initState();    
+    super.initState();
     _controller = PersistentTabController(initialIndex: 0);
   }
 
@@ -63,8 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(            
-    bottomNavigationBar: PersistentTabView(          
+    return Scaffold(
+        bottomNavigationBar: PersistentTabView(
       controller: _controller,
       items: _navBarsItems(),
       screens: _buildScreens(),
@@ -74,11 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
       iconSize: 30.0,
       navBarStyle:
           NavBarStyle.style5, // Choose the nav bar style with this property
-      onItemSelected: (index) {
-        if(index == 3){          
-          
-        }
-      },
+      onItemSelected: (index) {},
     ));
   }
 }

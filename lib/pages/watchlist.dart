@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flick/pages/detailed_movie.dart';
-import 'package:flick/pages/detailed_tv.dart';
+import 'package:Flick/pages/detailed_movie.dart';
+import 'package:Flick/pages/detailed_tv.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flick/ui/successAlert.dart';
-import 'package:flick/extra/iterablezip.dart';
+import 'package:Flick/ui/successAlert.dart';
+import 'package:Flick/extra/iterablezip.dart';
 import 'package:flip_card/flip_card.dart';
 
 class WatchList extends StatefulWidget {
   @override
   _WatchListState createState() => _WatchListState();
-
-  
 }
-
 
 List<dynamic> _list, _img = [];
 List<dynamic> title = [];
@@ -100,7 +97,7 @@ class _WatchListState extends State<WatchList> {
     return Scaffold(
         backgroundColor: Colors.black,
         body: FlipCard(
-          onFlip: (){
+          onFlip: () {
             _onRefresh();
           },
           flipOnTouch: true,
@@ -164,22 +161,26 @@ class _WatchListState extends State<WatchList> {
                 ),
                 Container(
                   margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 15,
-                      left: MediaQuery.of(context).size.width / 1.5),
-                  child: Column(
+                      top: MediaQuery.of(context).size.height / 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      FlatButton.icon(
-                          onPressed: () {
-                            _onRefresh();
-                          },
-                          icon: Icon(Icons.replay),
-                          label: Text('Update List')),
-                      FlatButton.icon(
-                          onPressed: () {
-                            cleanList('seriesid', 'seriescoverimg');
-                          },
-                          icon: Icon(Icons.close),
-                          label: Text('Clear List')),
+                      Column(
+                        children: <Widget>[
+                          FlatButton.icon(
+                              onPressed: () {
+                                _onRefresh();
+                              },
+                              icon: Icon(Icons.replay),
+                              label: Text('Update List')),
+                          FlatButton.icon(
+                              onPressed: () {
+                                cleanList('seriesid', 'seriescoverimg');
+                              },
+                              icon: Icon(Icons.close),
+                              label: Text('Clear List')),
+                        ],
+                      ),
                     ],
                   ),
                 )
@@ -335,14 +336,25 @@ class _WatchListState extends State<WatchList> {
                 margin: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height / 15,
                     left: MediaQuery.of(context).size.width / 1.5),
-                child: Column(
-                  children: <Widget>[                    
-                    FlatButton.icon(
-                        onPressed: () {
-                          cleanList('moviesId', 'moviecover');
-                        },
-                        icon: Icon(Icons.close),
-                        label: Text('Clear List')),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        FlatButton.icon(
+                                  onPressed: () {
+                                    _onRefresh();
+                                  },
+                                  icon: Icon(Icons.replay),
+                                  label: Text('Update List')),
+                        FlatButton.icon(
+                            onPressed: () {
+                              cleanList('moviesId', 'moviecover');
+                            },
+                            icon: Icon(Icons.close),
+                            label: Text('Clear List')),
+                      ],
+                    ),
                   ],
                 ),
               )

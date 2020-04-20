@@ -1,9 +1,9 @@
-import 'package:flick/pages/detailed_tv.dart';
-import 'package:flick/ui/shimmerCards.dart';
+import 'package:Flick/pages/detailed_tv.dart';
+import 'package:Flick/ui/shimmerCards.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:flick/extra/iterablezip.dart';
-import 'package:flick/pages/detailed_movie.dart';
-import 'package:flick/services/APIhome.dart';
+import 'package:Flick/extra/iterablezip.dart';
+import 'package:Flick/pages/detailed_movie.dart';
+import 'package:Flick/services/APIhome.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
@@ -62,7 +62,7 @@ class _BottomSheetxState extends State<BottomSheetx> {
   }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
         child: Container(

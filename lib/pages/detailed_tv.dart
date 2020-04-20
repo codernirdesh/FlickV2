@@ -1,5 +1,5 @@
-import 'package:flick/ui/successAlert.dart';
-import 'package:flick/services/APItv_detail.dart';
+import 'package:Flick/ui/successAlert.dart';
+import 'package:Flick/services/APItv_detail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
@@ -267,7 +267,7 @@ class _TvDetailState extends State<TvDetail> {
                       code == null
                           ? Text('')
                           : Container(
-                              margin: EdgeInsets.only(top: 170, right: 10),
+                              margin: EdgeInsets.only(top: 190, right: 10),
                               child: Column(
                                 children: <Widget>[
                                   Row(
@@ -538,7 +538,7 @@ class _TvDetailState extends State<TvDetail> {
       bg.add(img);
       setWatchListData();
       getWatchListData();
-      
+
       SuccessBgAlertBox(
           context: context,
           title: '$title added to your watch list',
@@ -551,7 +551,7 @@ class _TvDetailState extends State<TvDetail> {
       watchlist.remove(movieid);
       bg.remove(img);
       setWatchListData();
-      getWatchListData();      
+      getWatchListData();
       DarkBgAlertBox(
           context: context,
           messageTextColor: Colors.white,

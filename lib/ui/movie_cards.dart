@@ -1,21 +1,21 @@
 import 'dart:ui';
-import 'package:flick/pages/see_more.dart';
-import 'package:flick/ui/shimmerCards.dart';
+import 'package:Flick/pages/see_more.dart';
+import 'package:Flick/ui/shimmerCards.dart';
 import 'package:flutter/material.dart';
-import 'package:flick/pages/detailed_movie.dart';
-import 'package:flick/extra/iterablezip.dart';
+import 'package:Flick/pages/detailed_movie.dart';
+import 'package:Flick/extra/iterablezip.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class MovieCard extends StatelessWidget {
-  MovieCard(
-      {@required this.listitem,
-      @required this.movieid,
-      @required this.initialString,
-      @optionalTypeArgs this.responsecode,
-      @required this.seewhat,
-      @required this.type,
-      });
+  MovieCard({
+    @required this.listitem,
+    @required this.movieid,
+    @required this.initialString,
+    @optionalTypeArgs this.responsecode,
+    @required this.seewhat,
+    @required this.type,
+  });
 
   final List<String> listitem;
   final List<int> movieid;
@@ -25,7 +25,7 @@ class MovieCard extends StatelessWidget {
   final String type;
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Container(
         height: 250,
         padding: EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 10),
@@ -42,12 +42,12 @@ class MovieCard extends StatelessWidget {
                 FlatButton(
                   onPressed: () {
                     showModalBottomSheet(
-                      elevation: 0,                      
-                      backgroundColor: Colors.transparent,                      
+                      elevation: 0,
+                      backgroundColor: Colors.transparent,
                       context: context,
                       builder: (BuildContext context) => BottomSheet(
                           builder: (BuildContext context) {
-                            return BottomSheetx(                              
+                            return BottomSheetx(
                               seewhat: seewhat,
                               type: type,
                             );

@@ -1,10 +1,10 @@
-import 'package:flick/pages/detailed_movie.dart';
+import 'package:Flick/pages/detailed_movie.dart';
 import 'package:flutter/material.dart';
-import 'package:flick/pages/detailed_tv.dart';
-import 'package:flick/services/search_api.dart';
+import 'package:Flick/pages/detailed_tv.dart';
+import 'package:Flick/services/search_api.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:flick/extra/iterablezip.dart';
+import 'package:Flick/extra/iterablezip.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -139,7 +139,7 @@ class _SearchPageState extends State<SearchPage> {
                   onChanged: (_) {
                     setState(() {
                       typex = _;
-                      title = null;                      
+                      title = null;
                     });
                   },
                 ),
@@ -332,7 +332,7 @@ class Suggestion extends StatelessWidget {
           SizedBox(height: 30),
           SuggestionText(title: 'Game of Thrones', id: 1399, type: 'tv'),
           SizedBox(height: 30),
-          SuggestionText(title: 'Rick and Morty', id: 60625, type: 'tv'),          
+          SuggestionText(title: 'Rick and Morty', id: 60625, type: 'tv'),
         ]));
   }
 }

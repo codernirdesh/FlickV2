@@ -62,7 +62,7 @@ class SuccessBgAlertBox {
                       borderRadius: BorderRadius.all(Radius.circular(9.0))),
                   color: buttonColor ?? Colors.white,
                   onPressed: () {
-                    Navigator.of(context).pop();                    
+                    Navigator.of(context).pop();
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,5 @@
-import 'package:flick/ui/successAlert.dart';
-import 'package:flick/services/APImovie_detail.dart';
+import 'package:Flick/ui/successAlert.dart';
+import 'package:Flick/services/APImovie_detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui';
@@ -32,14 +32,14 @@ class _MovieDetailState extends State<MovieDetail> {
   void setWatchListData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('moviesId', watchlist);
-    prefs.setStringList('moviecover', cover);    
+    prefs.setStringList('moviecover', cover);
   }
 
   void getWatchListData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> name = prefs.getStringList('moviesId');
     List<String> cvr = prefs.getStringList('moviecover');
-    
+
     if (name == null || cvr == null) {
       watchlist = [];
       cover = [];
@@ -87,7 +87,7 @@ class _MovieDetailState extends State<MovieDetail> {
       watchlist.add(movieid);
       cover.add(img);
       setWatchListData();
-      getWatchListData();      
+      getWatchListData();
       SuccessBgAlertBox(
           context: context,
           title: '$title added to your watch list',
@@ -100,7 +100,7 @@ class _MovieDetailState extends State<MovieDetail> {
       watchlist.remove(movieid);
       cover.remove(img);
       setWatchListData();
-      getWatchListData();      
+      getWatchListData();
       DarkBgAlertBox(
           context: context,
           messageTextColor: Colors.white,
@@ -266,7 +266,7 @@ class _MovieDetailState extends State<MovieDetail> {
                       code == null
                           ? Text('')
                           : Container(
-                              margin: EdgeInsets.only(top: 170, right: 10),
+                              margin: EdgeInsets.only(top: 190, right: 10),
                               child: Column(
                                 children: <Widget>[
                                   Row(
@@ -368,7 +368,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                 ),
                                 onRatingUpdate: (rating) {
                                   setState(() {
-                                    rated = rating * 2.0;                                    
+                                    rated = rating * 2.0;
                                   });
                                 },
                               ),
@@ -428,7 +428,7 @@ class _MovieDetailState extends State<MovieDetail> {
                             ],
                           ),
                         ],
-                      ),                      
+                      ),
                       SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
