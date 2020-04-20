@@ -11,11 +11,15 @@ import 'package:flip_card/flip_card.dart';
 class WatchList extends StatefulWidget {
   @override
   _WatchListState createState() => _WatchListState();
+
+  
 }
+
 
 List<dynamic> _list, _img = [];
 List<dynamic> title = [];
 List<dynamic> moviescover, moviesid = [];
+bool started = false;
 
 class _WatchListState extends State<WatchList> {
   Future<void> getList() async {
@@ -49,11 +53,13 @@ class _WatchListState extends State<WatchList> {
         moviesid = movieid;
       });
     }
+    setState(() {
+      started = true;
+    });
   }
 
   Future<void> cleanList(String idtype, String covertype) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    List<String> list = preferences.getStringList(idtype);
     WarningBgAlertBox(
         context: context,
         buttonText: 'CLOSE',
@@ -63,7 +69,6 @@ class _WatchListState extends State<WatchList> {
             List<String> empty = [];
             preferences.setStringList(idtype, empty);
             preferences.setStringList(covertype, empty);
-            print('$list');
             _onRefresh();
           });
         },
@@ -75,7 +80,7 @@ class _WatchListState extends State<WatchList> {
   }
 
   RefreshController _refreshController =
-      RefreshController(initialRefresh: true);
+      RefreshController(initialRefresh: false);
 
   void _onRefresh() {
     setState(() {
@@ -95,6 +100,9 @@ class _WatchListState extends State<WatchList> {
     return Scaffold(
         backgroundColor: Colors.black,
         body: FlipCard(
+          onFlip: (){
+            _onRefresh();
+          },
           flipOnTouch: true,
           direction: FlipDirection.HORIZONTAL,
           front: SmartRefresher(
@@ -176,7 +184,7 @@ class _WatchListState extends State<WatchList> {
                   ),
                 )
               ]),
-              _list == []
+              started == false
                   ? Text('')
                   : Container(
                       child: Column(
@@ -328,13 +336,7 @@ class _WatchListState extends State<WatchList> {
                     top: MediaQuery.of(context).size.height / 15,
                     left: MediaQuery.of(context).size.width / 1.5),
                 child: Column(
-                  children: <Widget>[
-                    FlatButton.icon(
-                        onPressed: () {
-                          _onRefresh();
-                        },
-                        icon: Icon(Icons.replay),
-                        label: Text('Update List')),
+                  children: <Widget>[                    
                     FlatButton.icon(
                         onPressed: () {
                           cleanList('moviesId', 'moviecover');
@@ -346,96 +348,102 @@ class _WatchListState extends State<WatchList> {
               )
             ]),
             Container(
-                child: Column(
-                    children: IterableZip([moviesid, moviescover]).map((f) {
-              dynamic list = f[0];
-              dynamic img = f[1];
-              return Stack(children: <Widget>[
-                Container(
-                  width: MediaQuery.of(context).size.width / 1,
-                  height: MediaQuery.of(context).size.height / 3,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(img == null
-                              ? 'https://i.ibb.co/CvCHJ7N/error.png'
-                              : 'https://image.tmdb.org/t/p/w500$img'),
-                          fit: BoxFit.fitWidth)),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 1,
-                  height: MediaQuery.of(context).size.height / 3,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.bottomRight,
-                        colors: [Colors.black, Colors.black12]),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    int x = int.parse(list);
-                    {
-                      pushNewScreen(
-                        context,
-                        screen: MovieDetail(movieId: x),
-                        withNavBar: false,
-                      );
-                    }
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 1,
-                    height: MediaQuery.of(context).size.height / 3,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          colors: [Colors.black, Colors.black12]),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    int x = int.parse(list);
-                    {
-                      pushNewScreen(
-                        context,
-                        screen: MovieDetail(movieId: x),
-                        withNavBar: false,
-                      );
-                    }
-                  },
-                  child: Container(
-                      padding: EdgeInsets.only(right: 10),
-                      margin: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height / 5.5),
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
-                              IconButton(
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
-                                    size: 50,
-                                  ),
-                                  onPressed: () {
-                                    remove(list, img, 'moviesId', 'moviecover');
-                                  }),
-                            ],
+                child: started == false
+                    ? Text(' _')
+                    : Column(
+                        children: IterableZip([moviesid, moviescover]).map((f) {
+                        dynamic list = f[0];
+                        dynamic img = f[1];
+                        return Stack(children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1,
+                            height: MediaQuery.of(context).size.height / 3,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(img == null
+                                        ? 'https://i.ibb.co/CvCHJ7N/error.png'
+                                        : 'https://image.tmdb.org/t/p/w500$img'),
+                                    fit: BoxFit.fitWidth)),
                           ),
-                          SizedBox(height: 10),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              //  Text('Remove', style: TextStyle(color: Colors.red),),
-                            ],
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1,
+                            height: MediaQuery.of(context).size.height / 3,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomRight,
+                                  colors: [Colors.black, Colors.black12]),
+                            ),
                           ),
-                        ],
-                      )),
-                )
-              ]);
-            }).toList()))
+                          InkWell(
+                            onTap: () {
+                              int x = int.parse(list);
+                              {
+                                pushNewScreen(
+                                  context,
+                                  screen: MovieDetail(movieId: x),
+                                  withNavBar: false,
+                                );
+                              }
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 1,
+                              height: MediaQuery.of(context).size.height / 3,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    colors: [Colors.black, Colors.black12]),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              int x = int.parse(list);
+                              {
+                                pushNewScreen(
+                                  context,
+                                  screen: MovieDetail(movieId: x),
+                                  withNavBar: false,
+                                );
+                              }
+                            },
+                            child: Container(
+                                padding: EdgeInsets.only(right: 10),
+                                margin: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height /
+                                        5.5),
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: <Widget>[
+                                        IconButton(
+                                            icon: Icon(
+                                              Icons.delete,
+                                              color: Colors.white,
+                                              size: 50,
+                                            ),
+                                            onPressed: () {
+                                              remove(list, img, 'moviesId',
+                                                  'moviecover');
+                                            }),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        //  Text('Remove', style: TextStyle(color: Colors.red),),
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          )
+                        ]);
+                      }).toList()))
           ]),
         ));
   }

@@ -77,6 +77,12 @@ class MovieCard extends StatelessWidget {
                             SizedBox(width: 40),
                             ShimmerCard(),
                             SizedBox(width: 40),
+                            ShimmerCard(),
+                            SizedBox(width: 40),
+                            ShimmerCard(),
+                            SizedBox(width: 40),
+                            ShimmerCard(),
+                            SizedBox(width: 40),
                           ],
                         )
                       : Row(

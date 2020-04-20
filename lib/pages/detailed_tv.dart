@@ -17,7 +17,7 @@ class TvDetail extends StatefulWidget {
 }
 
 class _TvDetailState extends State<TvDetail> {
-  // YoutubePlayerController _controller;
+  YoutubePlayerController _controller;
 
   String movieid, createdby, genre, year, rating, plot, coverimg, tagline = '';
   String img, language, status, origincountry, lastEpisode, title = '';
@@ -538,8 +538,7 @@ class _TvDetailState extends State<TvDetail> {
       bg.add(img);
       setWatchListData();
       getWatchListData();
-      print('$watchlist');
-      print('$bg');
+      
       SuccessBgAlertBox(
           context: context,
           title: '$title added to your watch list',
@@ -552,9 +551,7 @@ class _TvDetailState extends State<TvDetail> {
       watchlist.remove(movieid);
       bg.remove(img);
       setWatchListData();
-      getWatchListData();
-      print('$watchlist');
-      print(bg);
+      getWatchListData();      
       DarkBgAlertBox(
           context: context,
           messageTextColor: Colors.white,

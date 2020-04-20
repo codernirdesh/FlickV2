@@ -51,17 +51,14 @@ class TvApiFetch{
     else{
       videourl = data2['results'][0]['key'];
     }
-    print(videourl);
+    
     }
 
     
     catch(e){
-      print(e);
+     
     }
     
-    
-    // Map seasoninfo = json.encode(seasonzz) as Map;    
-    // print(seasoninfo);
     }    
   }
 

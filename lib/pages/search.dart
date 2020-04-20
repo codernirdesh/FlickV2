@@ -139,8 +139,7 @@ class _SearchPageState extends State<SearchPage> {
                   onChanged: (_) {
                     setState(() {
                       typex = _;
-                      title = null;
-                      print(typex);
+                      title = null;                      
                     });
                   },
                 ),
@@ -333,8 +332,7 @@ class Suggestion extends StatelessWidget {
           SizedBox(height: 30),
           SuggestionText(title: 'Game of Thrones', id: 1399, type: 'tv'),
           SizedBox(height: 30),
-          SuggestionText(title: 'Rick and Morty', id: 60625, type: 'tv'),
-          SizedBox(height: 30)
+          SuggestionText(title: 'Rick and Morty', id: 60625, type: 'tv'),          
         ]));
   }
 }

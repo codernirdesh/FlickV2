@@ -15,6 +15,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   PersistentTabController _controller;
 
+
   @override
   void initState() {
     super.initState();    
@@ -73,7 +74,11 @@ class _MyHomePageState extends State<MyHomePage> {
       iconSize: 30.0,
       navBarStyle:
           NavBarStyle.style5, // Choose the nav bar style with this property
-      onItemSelected: (index) {},
+      onItemSelected: (index) {
+        if(index == 3){          
+          
+        }
+      },
     ));
   }
 }

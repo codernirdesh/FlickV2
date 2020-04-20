@@ -87,9 +87,7 @@ class _MovieDetailState extends State<MovieDetail> {
       watchlist.add(movieid);
       cover.add(img);
       setWatchListData();
-      getWatchListData();
-      print('$watchlist');
-      print('$cover');
+      getWatchListData();      
       SuccessBgAlertBox(
           context: context,
           title: '$title added to your watch list',
@@ -102,9 +100,7 @@ class _MovieDetailState extends State<MovieDetail> {
       watchlist.remove(movieid);
       cover.remove(img);
       setWatchListData();
-      getWatchListData();
-      print('$watchlist');
-      print('$cover');
+      getWatchListData();      
       DarkBgAlertBox(
           context: context,
           messageTextColor: Colors.white,

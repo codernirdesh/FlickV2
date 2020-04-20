@@ -43,7 +43,7 @@ class ApiFetch{
     }
     }
     catch(e){
-      // print(e);
+      
     }
     
 
