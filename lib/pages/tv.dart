@@ -3,6 +3,8 @@ import 'package:Flick/ui/tv_cards.dart';
 import 'package:Flick/services/APIhome.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'dart:math';
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:Flick/services/admob_service.dart';
 
 class TvPage extends StatefulWidget {
   @override
@@ -10,6 +12,8 @@ class TvPage extends StatefulWidget {
 }
 
 class _TvPageState extends State<TvPage> {
+  final ams = AdMobService();
+
   List<String> posters, posters2, posters3 = [];
   List<int> movieId, movieId2, movieId3 = [];
 
@@ -51,12 +55,14 @@ class _TvPageState extends State<TvPage> {
 
   void _onRefresh() {
     getMovies();
+    // Admob.initialize(ams.getAdMobAppId());
     _refreshController.refreshCompleted();
   }
 
   @override
   void initState() {
     super.initState();
+    Admob.initialize(ams.getAdMobAppId());
     getMovies();
   }
 
@@ -118,6 +124,13 @@ class _TvPageState extends State<TvPage> {
                 responsecode: responsecode,
                 seewhat: 'popular',
                 type: 'tv'),
+            responsecode == null
+            ? Container()
+
+            : AdmobBanner(
+              adUnitId: ams.getBannerAdId(),
+              adSize: AdmobBannerSize.FULL_BANNER,
+            ),
             TvCard(
                 movieid: movieId2,
                 listitem: posters2,
@@ -125,13 +138,29 @@ class _TvPageState extends State<TvPage> {
                 responsecode: responsecode,
                 seewhat: 'top_rated',
                 type: 'tv'),
-            TvCard(
+
+            responsecode == null
+            ? Container()
+
+            : AdmobBanner(
+              adUnitId: ams.getBannerAdId(),
+              adSize: AdmobBannerSize.FULL_BANNER,
+            ),
+            TvCard(            
                 movieid: movieId3,
                 listitem: posters3,
                 initialString: 'TV Shows For You',
                 responsecode: responsecode,
                 seewhat: 'top_rated',
                 type: 'tv'),
+            
+            responsecode == null
+            ? Container()
+            :
+            AdmobBanner(
+              adUnitId: ams.getBannerAdId(),
+              adSize: AdmobBannerSize.FULL_BANNER,
+            ),
           ],
         ),
       )),

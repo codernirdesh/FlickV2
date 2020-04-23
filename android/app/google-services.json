@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "241976687248",
+    "firebase_url": "https://flick-6a414.firebaseio.com",
+    "project_id": "flick-6a414",
+    "storage_bucket": "flick-6a414.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241976687248:android:cc996f3a338ce62b527615",
+        "android_client_info": {
+          "package_name": "com.kiran.flick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241976687248-n0q43mdlq1gmnfsf3sdn2cptsaatd67o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0VJPMusv0AJvt9hlOJNtchj1qkTb-kVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241976687248-n0q43mdlq1gmnfsf3sdn2cptsaatd67o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

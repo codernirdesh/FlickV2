@@ -4,13 +4,21 @@ import 'package:Flick/services/APIhome.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'dart:math';
 import 'package:connection_status_bar/connection_status_bar.dart';
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:Flick/services/admob_service.dart';
 
 class MoviesPage extends StatefulWidget {
   @override
   _MoviesPageState createState() => _MoviesPageState();
+  
 }
 
+
 class _MoviesPageState extends State<MoviesPage> {
+
+  final ams = AdMobService();
+
+    
   List<String> posters, posters2, posters3, posters4, posters5 = [];
   List<int> movieId, movieId2, movieId3, movieId4, movieId5 = [];
 
@@ -59,18 +67,20 @@ class _MoviesPageState extends State<MoviesPage> {
 
   void _onRefresh() {
     getMovies();
-
+    // Admob.initialize(ams.getAdMobAppId());
     _refreshController.refreshCompleted();
   }
 
   @override
   void initState() {
     super.initState();
-    // getMovies();
+    Admob.initialize(ams.getAdMobAppId());
+    
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
@@ -140,6 +150,15 @@ class _MoviesPageState extends State<MoviesPage> {
               seewhat: 'now_playing',
               type: 'movie',
             ),
+
+            // Ads
+            responsecode == null
+            ? Container()
+            : AdmobBanner(
+              adUnitId: ams.getBannerAdId(), 
+              adSize: AdmobBannerSize.FULL_BANNER,
+              ),
+
             MovieCard(
                 movieid: movieId,
                 listitem: posters,
@@ -147,6 +166,15 @@ class _MoviesPageState extends State<MoviesPage> {
                 responsecode: responsecode,
                 seewhat: 'popular',
                 type: 'movie'),
+
+
+            responsecode == null
+            ? Container()
+            : AdmobBanner(
+              adUnitId: ams.getBannerAdId(), 
+              adSize: AdmobBannerSize.FULL_BANNER,
+              ),
+
             MovieCard(
               movieid: movieId2,
               listitem: posters2,
@@ -155,6 +183,16 @@ class _MoviesPageState extends State<MoviesPage> {
               seewhat: 'top_rated',
               type: 'movie',
             ),
+
+            responsecode == null
+            ? Container()
+
+            : AdmobBanner(
+              adUnitId: ams.getBannerAdId(), 
+              adSize: AdmobBannerSize.FULL_BANNER,
+              ),
+
+
             MovieCard(
                 movieid: movieId5,
                 listitem: posters5,
@@ -162,9 +200,18 @@ class _MoviesPageState extends State<MoviesPage> {
                 seewhat: 'top_rated',
                 type: 'movie',
                 responsecode: responsecode),
+
+              responsecode == null
+            ? Container()
+            :
+              AdmobBanner(
+              adUnitId: ams.getBannerAdId(), 
+              adSize: AdmobBannerSize.FULL_BANNER,
+              ),
           ],
         ),
       )),
     );
   }
+
 }

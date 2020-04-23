@@ -36,6 +36,7 @@ dependencies:
   flutter_animator: ^2.0.8
   skeleton_text: ^1.0.0
   connection_status_bar: ^1.1.2  
+  admob_flutter: ^0.3.4
   
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
