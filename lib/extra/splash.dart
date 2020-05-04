@@ -136,12 +136,9 @@ class _CustomSplashState extends State<CustomSplash>
           });
 
     return Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         body: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.bottomRight,
-                    colors: [Color(0xFF0193ac), Color(0xFF008783)])),
+            color: Colors.black,
             child: _buildAnimation()));
   }
 }

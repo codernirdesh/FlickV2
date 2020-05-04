@@ -1,7 +1,4 @@
 com.kiran.flick
-attr adSize
-attr adSizes
-attr adUnitId
 attr alpha
 attr buttonSize
 attr circleCrop
@@ -29,10 +26,6 @@ attr layout_keyline
 attr scopeUris
 attr statusBarBackground
 attr ttcIndex
-color browser_actions_bg_grey
-color browser_actions_divider_color
-color browser_actions_text_color
-color browser_actions_title_color
 color common_google_signin_btn_text_dark
 color common_google_signin_btn_text_dark_default
 color common_google_signin_btn_text_dark_disabled
@@ -48,8 +41,6 @@ color notification_action_color_filter
 color notification_icon_bg_color
 color ripple_material_light
 color secondary_text_default_material_light
-dimen browser_actions_context_menu_max_width
-dimen browser_actions_context_menu_min_padding
 dimen compat_button_inset_horizontal_material
 dimen compat_button_inset_vertical_material
 dimen compat_button_padding_horizontal_material
@@ -93,8 +84,6 @@ drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
-drawable ic_launcher_background
-drawable ic_launcher_foreground
 drawable launch_background
 drawable notification_action_background
 drawable notification_bg
@@ -154,11 +143,6 @@ id async
 id auto
 id blocking
 id bottom
-id browser_actions_header_text
-id browser_actions_menu_item_icon
-id browser_actions_menu_item_text
-id browser_actions_menu_items
-id browser_actions_menu_view
 id center
 id center_horizontal
 id center_vertical
@@ -207,8 +191,6 @@ id top
 id wide
 integer google_play_services_version
 integer status_bar_notification_info_maxnum
-layout browser_actions_context_menu_page
-layout browser_actions_context_menu_row
 layout custom_dialog
 layout notification_action
 layout notification_action_tombstone
@@ -236,13 +218,6 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
-string s1
-string s2
-string s3
-string s4
-string s5
-string s6
-string s7
 string status_bar_notification_info_overflow
 style LaunchTheme
 style TextAppearance_Compat_Notification
@@ -250,11 +225,9 @@ style TextAppearance_Compat_Notification_Info
 style TextAppearance_Compat_Notification_Line2
 style TextAppearance_Compat_Notification_Time
 style TextAppearance_Compat_Notification_Title
-style Theme_IAPTheme
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
 style Widget_Support_CoordinatorLayout
-styleable AdsAttrs adSize adSizes adUnitId
 styleable ColorStateListItem android_color android_alpha alpha
 styleable CoordinatorLayout keylines statusBarBackground
 styleable CoordinatorLayout_Layout android_layout_gravity layout_anchor layout_anchorGravity layout_behavior layout_dodgeInsetEdges layout_insetEdge layout_keyline

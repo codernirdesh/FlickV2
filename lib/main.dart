@@ -1,6 +1,8 @@
 import 'package:Flick/extra/splash.dart';
 import 'package:Flick/ui/navbar.dart';
 import 'package:flutter/material.dart';
+// import 'package:admob_flutter/admob_flutter.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,12 +18,10 @@ class MyApp extends StatelessWidget {
         imagePath: 'assets/splash.png',
         animationEffect: 'fade-in',
         home: MyHomePage(),
-        customFunction: duringSplash,
         duration: 2500,
-        type: CustomSplashType.StaticDuration,
+        type: CustomSplashType.StaticDuration,        
       ),
     );
   }
 }
 
-void duringSplash() {}

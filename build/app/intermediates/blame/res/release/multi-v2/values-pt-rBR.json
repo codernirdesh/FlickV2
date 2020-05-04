@@ -4,23 +4,6 @@
             "outputFile": "D:\\Flutter Projects\\flick\\FlickV2\\build\\app\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-pt-rBR\\values-pt-rBR.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\kiran\\.gradle\\caches\\transforms-2\\files-2.1\\ba746955a747186edec2696293351699\\jetified-play-services-ads-17.0.0\\res\\values-pt-rBR\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10",
-                        "startColumns": "0,0,0,0,0,0,0",
-                        "startOffsets": "201,271,394,459,524,604,713",
-                        "endColumns": "69,122,64,64,79,108,73",
-                        "endOffsets": "270,393,458,523,603,712,786"
-                    },
-                    "to": {
-                        "startLines": "20,21,22,23,24,25,26",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "2856,2930,3057,3126,3195,3279,3392",
-                        "endColumns": "73,126,68,68,83,112,77",
-                        "endOffsets": "2925,3052,3121,3190,3274,3387,3465"
-                    }
-                },
-                {
                     "source": "C:\\Users\\kiran\\.gradle\\caches\\transforms-2\\files-2.1\\3aaf6e5219b7f981ec263df919098c6f\\core-1.1.0\\res\\values-pt-rBR\\values-pt-rBR.xml",
                     "from": {
                         "startLines": "2",
@@ -30,11 +13,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "27",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "3470",
+                        "startOffsets": "2856",
                         "endColumns": "100",
-                        "endOffsets": "3566"
+                        "endOffsets": "2952"
                     }
                 },
                 {

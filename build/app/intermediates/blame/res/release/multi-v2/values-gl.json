@@ -4,23 +4,6 @@
             "outputFile": "D:\\Flutter Projects\\flick\\FlickV2\\build\\app\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-gl\\values-gl.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\kiran\\.gradle\\caches\\transforms-2\\files-2.1\\ba746955a747186edec2696293351699\\jetified-play-services-ads-17.0.0\\res\\values-gl\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10",
-                        "startColumns": "0,0,0,0,0,0,0",
-                        "startOffsets": "197,266,391,456,522,606,723",
-                        "endColumns": "68,124,64,65,83,116,71",
-                        "endOffsets": "265,390,455,521,605,722,794"
-                    },
-                    "to": {
-                        "startLines": "20,21,22,23,24,25,26",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "2875,2948,3077,3146,3216,3304,3425",
-                        "endColumns": "72,128,68,69,87,120,75",
-                        "endOffsets": "2943,3072,3141,3211,3299,3420,3496"
-                    }
-                },
-                {
                     "source": "C:\\Users\\kiran\\.gradle\\caches\\transforms-2\\files-2.1\\4c0b774c09d5393feb013f0dbe753af3\\play-services-base-17.0.0\\res\\values-gl\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -64,11 +47,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "27",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "3501",
+                        "startOffsets": "2875",
                         "endColumns": "100",
-                        "endOffsets": "3597"
+                        "endOffsets": "2971"
                     }
                 }
             ]

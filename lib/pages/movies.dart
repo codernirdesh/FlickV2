@@ -1,93 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:Flick/ui/movie_cards.dart';
-import 'package:Flick/services/APIhome.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'dart:math';
+import 'package:Flick/ui/RoundCards.dart';
 import 'package:connection_status_bar/connection_status_bar.dart';
-import 'package:admob_flutter/admob_flutter.dart';
-import 'package:Flick/services/admob_service.dart';
+import 'package:flutter/material.dart';
 
-class MoviesPage extends StatefulWidget {
+class MoviesPage extends StatelessWidget {
   @override
-  _MoviesPageState createState() => _MoviesPageState();
-  
-}
-
-
-class _MoviesPageState extends State<MoviesPage> {
-
-  final ams = AdMobService();
-
-    
-  List<String> posters, posters2, posters3, posters4, posters5 = [];
-  List<int> movieId, movieId2, movieId3, movieId4, movieId5 = [];
-
-  int responsecode;
-
-  void getMovies() async {
-    String key = 'a71008231061acb3b96b658e8afb1ca3';
-
-    Random random = new Random();
-    int page = random.nextInt(20) + 1;
-
-    Getmovie popular = Getmovie(
-        url: 'https://api.themoviedb.org/3/movie/popular?api_key=$key');
-    Getmovie toprated = Getmovie(
-        url: 'https://api.themoviedb.org/3/movie/top_rated?api_key=$key');
-    Getmovie nowplaying = Getmovie(
-        url: 'https://api.themoviedb.org/3/movie/now_playing?api_key=$key');
-    Getmovie moviesforyou = Getmovie(
-        url:
-            'https://api.themoviedb.org/3/movie/top_rated?api_key=$key&page=$page');
-
-    await popular.topRatedMoives();
-    await toprated.topRatedMoives();
-    await nowplaying.topRatedMoives();
-    await moviesforyou.topRatedMoives();
-
-    setState(() {
-      responsecode = popular.responsecode;
-
-      posters = popular.posterPath;
-      movieId = popular.id;
-
-      posters2 = toprated.posterPath;
-      movieId2 = toprated.id;
-
-      posters3 = nowplaying.posterPath;
-      movieId3 = nowplaying.id;
-
-      posters5 = moviesforyou.posterPath;
-      movieId5 = moviesforyou.id;
-    });
-  }
-
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: true);
-
-  void _onRefresh() {
-    getMovies();
-    // Admob.initialize(ams.getAdMobAppId());
-    _refreshController.refreshCompleted();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    Admob.initialize(ams.getAdMobAppId());
-    
-  }
-
-  @override
-  Widget build(BuildContext context) {    
-
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Container(
-          child: SmartRefresher(
-        controller: _refreshController,
-        onRefresh: _onRefresh,
-        child: ListView(
+      body: ListView(children: <Widget>[
+        Column(
           children: <Widget>[
             Stack(children: <Widget>[
               Align(
@@ -119,15 +39,16 @@ class _MoviesPageState extends State<MoviesPage> {
                         bottomRight: Radius.circular(20),
                         bottomLeft: Radius.circular(20))),
               ),
-              Container(
-                  margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 3.9, left: 20),
-                  child: Text('MOVIE',
-                      style: TextStyle(
-                          fontSize: 75,
-                          color: Colors.white,
-                          fontFamily: 'RussoOne',
-                          fontWeight: FontWeight.bold))),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 3.9, left: 10),
+                child: Text('MOVIE',
+                    style: TextStyle(
+                        fontSize: 75,
+                        color: Colors.white,
+                        fontFamily: 'RussoOne',
+                        fontWeight: FontWeight.bold)),
+              ),
               ConnectionStatusBar(
                 height: 25,
                 width: double.maxFinite,
@@ -142,76 +63,32 @@ class _MoviesPageState extends State<MoviesPage> {
                 ),
               ),
             ]),
-            MovieCard(
-              movieid: movieId3,
-              listitem: posters3,
-              initialString: 'Now Playing',
-              responsecode: responsecode,
-              seewhat: 'now_playing',
-              type: 'movie',
+            RoundCard(
+              prefixText: 'POPULAR MOVIES',
+              type: 'popular',
+              movieOrTv: 'movie',
             ),
-
-            // Ads
-            responsecode == null
-            ? Container()
-            : AdmobBanner(
-              adUnitId: ams.getBannerAdId(), 
-              adSize: AdmobBannerSize.FULL_BANNER,
-              ),
-
-            MovieCard(
-                movieid: movieId,
-                listitem: posters,
-                initialString: 'Currently Popular Movies',
-                responsecode: responsecode,
-                seewhat: 'popular',
-                type: 'movie'),
-
-
-            responsecode == null
-            ? Container()
-            : AdmobBanner(
-              adUnitId: ams.getBannerAdId(), 
-              adSize: AdmobBannerSize.FULL_BANNER,
-              ),
-
-            MovieCard(
-              movieid: movieId2,
-              listitem: posters2,
-              initialString: 'Top Rated Movies',
-              responsecode: responsecode,
-              seewhat: 'top_rated',
-              type: 'movie',
+            SizedBox(height: 20),
+            RoundCard(
+              prefixText: 'TOP RATED MOVIES',
+              type: 'top_rated',
+              movieOrTv: 'movie',
             ),
-
-            responsecode == null
-            ? Container()
-
-            : AdmobBanner(
-              adUnitId: ams.getBannerAdId(), 
-              adSize: AdmobBannerSize.FULL_BANNER,
-              ),
-
-
-            MovieCard(
-                movieid: movieId5,
-                listitem: posters5,
-                initialString: 'Movies For You',
-                seewhat: 'top_rated',
-                type: 'movie',
-                responsecode: responsecode),
-
-              responsecode == null
-            ? Container()
-            :
-              AdmobBanner(
-              adUnitId: ams.getBannerAdId(), 
-              adSize: AdmobBannerSize.FULL_BANNER,
-              ),
+            SizedBox(height: 20),
+            RoundCard(
+              prefixText: 'NOW PLAYING MOVIES',
+              type: 'now_playing',
+              movieOrTv: 'movie',
+            ),
+            SizedBox(height: 20),
+            RoundCard(
+              prefixText: 'UPCOMING MOVIES',
+              type: 'upcoming',
+              movieOrTv: 'movie',
+            ),
           ],
         ),
-      )),
+      ]),
     );
   }
-
 }

@@ -1,10 +1,7 @@
+import 'package:Flick/ui/RoundCards.dart';
 import 'package:flutter/material.dart';
-import 'package:Flick/ui/tv_cards.dart';
-import 'package:Flick/services/APIhome.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'dart:math';
-import 'package:admob_flutter/admob_flutter.dart';
-import 'package:Flick/services/admob_service.dart';
+import 'package:connection_status_bar/connection_status_bar.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class TvPage extends StatefulWidget {
   @override
@@ -12,70 +9,17 @@ class TvPage extends StatefulWidget {
 }
 
 class _TvPageState extends State<TvPage> {
-  final ams = AdMobService();
-
-  List<String> posters, posters2, posters3 = [];
-  List<int> movieId, movieId2, movieId3 = [];
-
-  int responsecode;
-
-  void getMovies() async {
-    String key = 'a71008231061acb3b96b658e8afb1ca3';
-    Random random = new Random();
-    int page = random.nextInt(20) + 1;
-
-    Getmovie popular =
-        Getmovie(url: 'https://api.themoviedb.org/3/tv/popular?api_key=$key');
-    Getmovie toprated =
-        Getmovie(url: 'https://api.themoviedb.org/3/tv/top_rated?api_key=$key');
-    Getmovie randompicked = Getmovie(
-        url:
-            'https://api.themoviedb.org/3/tv/top_rated?api_key=$key&language=en-US&page=$page');
-
-    await popular.topRatedMoives();
-    await toprated.topRatedMoives();
-    await randompicked.topRatedMoives();
-
-    setState(() {
-      responsecode = popular.responsecode;
-
-      posters = popular.posterPath;
-      movieId = popular.id;
-
-      posters2 = toprated.posterPath;
-      movieId2 = toprated.id;
-
-      posters3 = randompicked.posterPath;
-      movieId3 = randompicked.id;
-    });
-  }
-
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: true);
-
-  void _onRefresh() {
-    getMovies();
-    // Admob.initialize(ams.getAdMobAppId());
-    _refreshController.refreshCompleted();
-  }
-
   @override
   void initState() {
     super.initState();
-    Admob.initialize(ams.getAdMobAppId());
-    getMovies();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Container(
-          child: SmartRefresher(
-        controller: _refreshController,
-        onRefresh: _onRefresh,
-        // Here i can put pageview
-        child: ListView(
+      body:
+          ListView(physics: AlwaysScrollableScrollPhysics(), children: <Widget>[
+        Column(
           children: <Widget>[
             Stack(children: <Widget>[
               Align(
@@ -113,57 +57,49 @@ class _TvPageState extends State<TvPage> {
                   child: Text('TV',
                       style: TextStyle(
                           fontSize: 75,
-                          fontFamily: 'RussoOne',
                           color: Colors.white,
+                          fontFamily: 'RussoOne',
                           fontWeight: FontWeight.bold))),
+              ConnectionStatusBar(
+                height: 25,
+                width: double.maxFinite,
+                color: Colors.redAccent,
+                lookUpAddress: 'google.com',
+                endOffset: const Offset(0.0, 0.0),
+                beginOffset: const Offset(0.0, -1.0),
+                animationDuration: const Duration(milliseconds: 200),
+                title: Text(
+                  'Please check your internet connection :(',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ),
             ]),
-            TvCard(
-                movieid: movieId,
-                listitem: posters,
-                initialString: 'Currently Popular TV Shows',
-                responsecode: responsecode,
-                seewhat: 'popular',
-                type: 'tv'),
-            responsecode == null
-            ? Container()
-
-            : AdmobBanner(
-              adUnitId: ams.getBannerAdId(),
-              adSize: AdmobBannerSize.FULL_BANNER,
+            RoundCard(
+              prefixText: 'POPULAR TV SHOWS',
+              type: 'popular',
+              movieOrTv: 'tv',
             ),
-            TvCard(
-                movieid: movieId2,
-                listitem: posters2,
-                initialString: 'Top Rated TV Shows',
-                responsecode: responsecode,
-                seewhat: 'top_rated',
-                type: 'tv'),
-
-            responsecode == null
-            ? Container()
-
-            : AdmobBanner(
-              adUnitId: ams.getBannerAdId(),
-              adSize: AdmobBannerSize.FULL_BANNER,
+            SizedBox(height: 20),
+            RoundCard(
+              prefixText: 'TOP RATED TV SHOWS',
+              type: 'top_rated',
+              movieOrTv: 'tv',
             ),
-            TvCard(            
-                movieid: movieId3,
-                listitem: posters3,
-                initialString: 'TV Shows For You',
-                responsecode: responsecode,
-                seewhat: 'top_rated',
-                type: 'tv'),
-            
-            responsecode == null
-            ? Container()
-            :
-            AdmobBanner(
-              adUnitId: ams.getBannerAdId(),
-              adSize: AdmobBannerSize.FULL_BANNER,
+            SizedBox(height: 20),
+            RoundCard(
+              prefixText: 'TV SHOWS AIRING TODAY',
+              type: 'airing_today',
+              movieOrTv: 'tv',
+            ),
+            SizedBox(height: 20),
+            RoundCard(
+              prefixText: 'TV SHOWS AIRING NOW',
+              type: 'on_the_air',
+              movieOrTv: 'tv',
             ),
           ],
         ),
-      )),
+      ]),
     );
   }
 }

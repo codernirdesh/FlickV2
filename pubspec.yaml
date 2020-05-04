@@ -11,7 +11,7 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 2.0.0+2
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -25,18 +25,16 @@ dependencies:
   flutter_spinkit: ^4.1.2+1  
   url_launcher: ^5.4.2
   persistent_bottom_nav_bar: ^1.2.1  
-  shimmer: ^1.1.1
-  animated_text_kit: ^2.0.0  
-  youtube_player_flutter: ^6.1.0+7
-  cached_network_image: ^2.1.0+1
   flutter_rating_bar: ^3.0.1+1
   avatar_glow: ^1.1.0
-  flip_card: ^0.4.4
-  styled_widget: ^0.2.1+2
-  flutter_animator: ^2.0.8
-  skeleton_text: ^1.0.0
+  flip_card: ^0.4.4  
   connection_status_bar: ^1.1.2  
-  admob_flutter: ^0.3.4
+  cached_network_image: ^2.2.0
+  modal_bottom_sheet: ^0.1.5
+  expand_widget: ^0.2.0+2
+  youtube_player_flutter: ^6.1.0+7
+  
+  
   
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -47,12 +45,12 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_icons: ^0.7.4
 
-# flutter_icons:
-#   android: "launcher_icon"
-#   ios: true
-#   # image_path: "assets/icon/icon.png"
-#   adaptive_icon_background: "assets/icon/bg.png"
-#   # adaptive_icon_foreground: "assets/icon/icon.png"
+flutter_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/icon/icon.png"
+  adaptive_icon_background: "assets/icon/bg.png"
+  # adaptive_icon_foreground: "assets/icon/icon.png"
   
     
 

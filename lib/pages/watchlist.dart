@@ -1,6 +1,6 @@
+import 'package:Flick/pages/MovieDetail.dart';
+import 'package:Flick/pages/TvDetail.dart';
 import 'package:flutter/material.dart';
-import 'package:Flick/pages/detailed_movie.dart';
-import 'package:Flick/pages/detailed_tv.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -184,7 +184,7 @@ class _WatchListState extends State<WatchList> {
                     ],
                   ),
                 )
-              ]),
+              ]),              
               started == false
                   ? Text('')
                   : Container(
@@ -209,7 +209,7 @@ class _WatchListState extends State<WatchList> {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                                 begin: Alignment.bottomRight,
-                                colors: [Colors.black, Colors.black26]),
+                                colors: [Colors.black, Colors.black12]),
                           ),
                         ),
                         InkWell(
@@ -334,8 +334,8 @@ class _WatchListState extends State<WatchList> {
               ),
               Container(
                 margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 15,
-                    left: MediaQuery.of(context).size.width / 1.5),
+                    top: MediaQuery.of(context).size.height / 15,                    
+                    ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[

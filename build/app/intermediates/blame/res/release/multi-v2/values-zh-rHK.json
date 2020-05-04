@@ -30,11 +30,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "27",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "2898",
+                        "startOffsets": "2420",
                         "endColumns": "100",
-                        "endOffsets": "2994"
+                        "endOffsets": "2516"
                     }
                 },
                 {
@@ -52,23 +52,6 @@
                         "startOffsets": "1127",
                         "endColumns": "166",
                         "endOffsets": "1289"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\kiran\\.gradle\\caches\\transforms-2\\files-2.1\\ba746955a747186edec2696293351699\\jetified-play-services-ads-17.0.0\\res\\values-zh-rHK\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10",
-                        "startColumns": "0,0,0,0,0,0,0",
-                        "startOffsets": "201,262,335,395,455,519,589",
-                        "endColumns": "60,72,59,59,63,69,61",
-                        "endOffsets": "261,334,394,454,518,588,650"
-                    },
-                    "to": {
-                        "startLines": "20,21,22,23,24,25,26",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "2420,2485,2562,2626,2690,2758,2832",
-                        "endColumns": "64,76,63,63,67,73,65",
-                        "endOffsets": "2480,2557,2621,2685,2753,2827,2893"
                     }
                 }
             ]
